@@ -1,5 +1,5 @@
-var kBoardWidth = 5;
-var kBoardHeight= 5;
+var kBoardWidth = 100;
+var kBoardHeight= 50;
 var kPieceWidth = 10;
 var kPieceHeight= 10;
 var kPixelWidth = 1 + (kBoardWidth * kPieceWidth);
@@ -27,7 +27,7 @@ function clickCell(cell){
 	drawCell(column,row);
 	clicks++;
 	if(clicks == 3){
-		var timerId = setInterval(animateLife,100);
+		//var timerId = setInterval(animateLife,100);
 	}
 }
 
@@ -134,10 +134,20 @@ function initGame(canvasElement){
     gCanvas.height = kPixelHeight;
     gCanvas.addEventListener("click", lifeOnClick, false);
 	gPieces = new Array(kBoardWidth * kBoardHeight);
+	for(var i = 0, l = gPieces.length; i < l; ++i){
+		gPieces[i] = getRandomInt(0,1);
+	}
 	drawBoard();
+}
+
+function getRandomInt(min, max)
+{
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function animateLife(){
 	nextGeneration();
 	drawGeneration();
 }
+
+var timerId = setInterval(animateLife,100);
