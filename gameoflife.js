@@ -135,15 +135,21 @@ function initGame(canvasElement){
     gCanvas.height = kPixelHeight;
     gCanvas.addEventListener("click", lifeOnClick, false);
     gPieces = new Array(kBoardWidth * kBoardHeight);
-    for(var i = 0, l = gPieces.length; i < l; ++i){
-	gPieces[i] = getRandomInt(0,1);
-    }
+    
+
     drawBoard();
 }
 
 function getRandomInt(min, max)
 {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomPattern(){
+    for(var i = 0, l = gPieces.length; i < l; ++i){
+        gPieces[i] = getRandomInt(0,1);
+    }
+    playGame();
 }
 
 function pauseGame(){
